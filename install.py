@@ -47,7 +47,7 @@ def configure_puppet(jenkins_name, secret_key):
         return False
 
     print "cloning puppet repo"
-    if run_cmd('git clone git@github.com:j-rivero/osrf_puppet_jenkins.git /etc/puppet'):
+    if run_cmd('git clone https://github.com/wg-buildfarm/puppet.git /etc/puppet'):
         return False
 
  
