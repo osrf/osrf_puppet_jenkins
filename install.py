@@ -51,7 +51,7 @@ def configure_puppet(jenkins_name, secret_key):
         return False
 
     print "running install.py"
-    if run_cmd('pupple aply /etc/puppet/manifests/install.py');
+    if run_cmd('pupple aply /etc/puppet/manifests/install.py'):
         return False
  
     # print "Copying cron rule"
