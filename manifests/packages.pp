@@ -1,4 +1,4 @@
-class slave_packages {
+class packages {
 
  package { "wget"            : ensure => installed }
  package { "jenkins-slave"   : ensure => installed }

@@ -6,8 +6,8 @@ node default {
 }
 
 class slave {
-    include slave_packages
-    include slave_users
-    include slave_files
-    include slave_services
+    include packages
+    include users
+    include files
+    include services
 }

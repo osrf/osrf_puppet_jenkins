@@ -1,4 +1,4 @@
-class slave_services  {
+class services  {
 
   service { "lightdm":
        enable => true,

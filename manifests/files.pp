@@ -1,4 +1,4 @@
-class slave_files {
+class files {
 
  file { "/etc/sudoers":
     source => "puppet://files/etc/sudoers",

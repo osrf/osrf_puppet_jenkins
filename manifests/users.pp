@@ -1,4 +1,4 @@
-class slave_users {
+class users {
    user { "jenkins":
        ensure     => 'present',
        shell      => '/bin/bash',
