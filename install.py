@@ -50,6 +50,9 @@ def configure_puppet(jenkins_name, secret_key):
     if run_cmd('git clone https://github.com/j-rivero/osrf_puppet_jenkins.git  /etc/puppet'):
         return False
 
+    print "running install.py"
+    if run_cmd('pupple aply /etc/puppet/manifests/install.py');
+        return False
  
     # print "Copying cron rule"
     # do_scp(ip, 'identity/cron.puppet', '/etc/cron.d/puppet')

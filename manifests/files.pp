@@ -9,13 +9,13 @@ class slave_files {
 
   file { "/etc/lightdm/xhost.sh":
         source => "puppet://files/etc/lightdm/custom.conf",
-        require => Package[lightdm];
+        require => Package[lightdm],
 	notify => Exec['service lightdm restart'],
   }
 
   file { "/etc/squid-deb-proxy":
         source  => "puppet://files/etc/squid-deb-proxy",
-        require => Package[squid-deb-proxy];
+        require => Package[squid-deb-proxy],
         recurse => true,
   }
 }
