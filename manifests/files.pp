@@ -8,7 +8,7 @@ class files {
   }
 
   file { "/etc/lightdm/xhost.sh":
-        source => "puppet://files/etc/lightdm/custom.conf",
+        source => "puppet://files/etc/lightdm/xhost.sh",
         require => Package[lightdm],
 	notify => Exec[service_lightdm_restart],
   }
