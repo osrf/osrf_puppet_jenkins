@@ -5,7 +5,7 @@ class packages {
  package { "mercurial"       : ensure => installed }
  package { "ntp"             : ensure => installed }
  package { "lightdm"         : ensure => installed }
- package { "docker"          : ensure => installed }
+ package { "docker.io"       : ensure => installed }
  package { "squid-deb-proxy" : ensure => installed }
 
 }
