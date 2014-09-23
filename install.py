@@ -33,8 +33,8 @@ def configure_puppet(jenkins_name, secret_key):
     print "updating apt"
     if run_cmd('apt-get update'):
         return False
-    print "installing puppet and git"
-    if run_cmd('apt-get install -y puppet git-core'):
+    print "installing puppet and stdlib module"
+    if run_cmd('apt-get install -y puppet puppet-module-puppetlabs-stdlib'):
         return False
 
     print "stopping puppet"
