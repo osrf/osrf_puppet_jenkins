@@ -1,8 +1,8 @@
-= OSRF puppet for jenkins slaves =
+# OSRF puppet for jenkins slaves 
 
 Puppet configuration to set up build.osrfoundation.org jenkins slaves
 
-== Usage ==
+## Usage
 
  * Create the node in Jenkins
  * Go into the new jenkins node
@@ -11,7 +11,7 @@ Puppet configuration to set up build.osrfoundation.org jenkins slaves
    * Complete your information in /etc/default/jenkins-slave
    * sudo service jenkins-slave restart
 
-== Future work ==
+## Future work
 
  * Provide install.py with secret jenkins token and node name so 
    it can automatically complete the /etc/default/jenkins-slave configuration
