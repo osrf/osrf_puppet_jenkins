@@ -62,13 +62,15 @@ def configure_puppet(jenkins_name, secret_key):
 
 parser = OptionParser()
 
-#parser.add_option('--do-no-destroy', dest='do_not_destroy', default=False)
+# TODO: use two arguments to complete information in /etc/defaults/jenkins-slave
 
-(options, args) = parser.parse_args()
-if len(args) != 2:
-    parser.error("Run install <node_name> <secret_token")
+#(options, args) = parser.parse_args()
+#if len(args) != 2:
+#    parser.error("Run install <node_name> <secret_token")
 
-configure_puppet(args[0], args[1])
+#configure_puppet(args[0], args[1])
+
+configure_puppet('foo','foo')
 
 # connect to jenkins
 #try:
