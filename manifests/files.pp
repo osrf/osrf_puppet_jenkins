@@ -18,9 +18,9 @@ class files {
   # Ensure that display-setup-script is set
 
   file { "/etc/lightdm/lightdm.conf":
+    source => "$confdir_setting/files/etc/lightdm/lightdm.conf",
     replace => "no", # this is the important property
     ensure  => "present",
-    content => 'display-setup-script=/etc/lightdm/xhost.sh',
   }
 
   file_line { "/etc/lightdm/lightdm.conf":
