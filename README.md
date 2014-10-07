@@ -7,7 +7,7 @@ Puppet configuration to set up build.osrfoundation.org jenkins slaves
  * Create the node in Jenkins
  * Go into the new jenkins node
    * Download this repository
-   * sudo ./install.py test test
+   * sudo ./install.py
    * Complete your information in /etc/default/jenkins-slave
    * sudo service jenkins-slave restart
 
