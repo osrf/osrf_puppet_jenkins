@@ -19,6 +19,11 @@ def run_cmd(cmd, quiet=True, extra_args=None, feed=None):
         p.communicate(feed)
     return p.wait()
 
+def get_ubuntu_version():
+    return platform.dist()[2]
+
+def is_ubuntu():
+    return platorm.dist()[0] == 'Ubuntu'
 
 def configure_puppet(jenkins_name, secret_key):
     """
@@ -33,9 +38,19 @@ def configure_puppet(jenkins_name, secret_key):
     print "updating apt"
     if run_cmd('apt-get update'):
         return False
+
     print "installing puppet and stdlib module"
-    if run_cmd('apt-get install -y puppet puppet-module-puppetlabs-stdlib'):
-        return False
+    # No module package in precise
+    if get_ubuntu_version() == 'precise':
+        if run_cmd('sudo apt-get install -y puppet rubygems'):
+            return False
+        if run_cmd('sudo gem install puppet-module'):
+            return False
+        if run_cmd('sudo puppet module install puppetlabs-stdlib'):
+            return False
+    else:
+        if run_cmd('apt-get install -y puppet puppet-module-puppetlabs-stdlib'):
+            return False
 
     print "stopping puppet"
     # stop puppet
@@ -69,6 +84,10 @@ parser = OptionParser()
 #    parser.error("Run install <node_name> <secret_token")
 
 #configure_puppet(args[0], args[1])
+
+if not is_ubuntu():
+    print("Not ubuntu systems are not supported")
+    sys.exit(-1)
 
 configure_puppet('foo','foo')
 
