@@ -6,10 +6,14 @@ class services  {
        hasrestart => true,
   }
 
-  service { "docker.io":
+  case $operatingsystemrelease {
+    /!12.04/ : {
+      service { "docker.io":
        enable => true,
        ensure => running,
        hasrestart => true,
+      }
+    }
   }
 
   service { "jenkins-slave":
