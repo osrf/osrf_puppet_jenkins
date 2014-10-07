@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 # Mostly copied from wg-buildfarm by Tully Foote
 
 from optparse import OptionParser
@@ -42,10 +43,13 @@ def configure_puppet(jenkins_name, secret_key):
 
     print "installing puppet and stdlib module"
     # No module package in precise
+    # Deprecated package in pre
     if get_ubuntu_version() == 'precise':
-        if run_cmd('sudo apt-get install -y puppet rubygems'):
+        if run_cmd('wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb'):
             return False
-        if run_cmd('sudo gem install puppet-module'):
+        if run_cmd('sudo dpkg -i puppetlabs-release-precise.deb'):
+            return False
+        if run_cmd('sudo apt-get install -y puppet'):
             return False
         if run_cmd('sudo puppet module install puppetlabs-stdlib'):
             return False
@@ -70,8 +74,16 @@ def configure_puppet(jenkins_name, secret_key):
     if run_cmd('puppet apply /etc/puppet/manifests/site.pp', quiet=False):
         return False
  
-    # print "Copying cron rule"
-    # do_scp(ip, 'identity/cron.puppet', '/etc/cron.d/puppet')
+    # TODO: New kernel if we plan to use docker.io on precise
+    # BUT ... do we really want to run docker on a modified system in 
+    # precise (not the same of users)
+
+    # if get_ubuntu_version() == 'precise':
+    #  print "Installing the LTS Enablement Stack on Precise for the use of docker"
+    #  print " - be carefull if you are using Nvidia or ATI"
+    #  if run_cmd('sudo apt-get install --install-recommends linux-generic-lts-raring xserver-xorg-lts-raring libgl1-mesa-glx-lts-raring'):
+    #      return False
+    #  print " + LTS Enablement Stack installed. Please reboot"
 
     return True
 
