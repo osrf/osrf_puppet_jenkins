@@ -5,6 +5,7 @@
 from optparse import OptionParser
 import sys
 import subprocess
+import platform
 
 def run_cmd(cmd, quiet=True, extra_args=None, feed=None):
     args = {'shell': True}
@@ -23,7 +24,7 @@ def get_ubuntu_version():
     return platform.dist()[2]
 
 def is_ubuntu():
-    return platorm.dist()[0] == 'Ubuntu'
+    return platform.dist()[0] == 'Ubuntu'
 
 def configure_puppet(jenkins_name, secret_key):
     """
