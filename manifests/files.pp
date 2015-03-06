@@ -7,6 +7,14 @@ class files {
     path   => '/etc/sudoers',
   }
 
+  # jenkins-slave script seems not be work from the init/rc.2 system
+  # workaround by using rc.local
+  file_line {
+    ensure => present,
+    line   => 'service jenkins-slave restart'
+    path   => '/etc/rc.local'
+  }
+
   file { "/etc/lightdm/xhost.sh":
         source => "$confdir_setting/files/etc/lightdm/xhost.sh",
         mode=> "0744",
