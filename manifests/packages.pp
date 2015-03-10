@@ -17,7 +17,8 @@ class packages {
         }
    }
    default : {
-       package { "docker.io"       : ensure => installed }
+       package { "docker.io"         : ensure => installed }
+       package { "qemu-user-static " : ensure => installed }
    }
  }
 
