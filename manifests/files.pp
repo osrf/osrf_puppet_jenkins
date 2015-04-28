@@ -9,7 +9,7 @@ class files {
 
   # jenkins-slave script seems not be work from the init/rc.2 system
   # workaround by using rc.local
-  file_line {
+  file_line { "/etc/rc.local"
     ensure => present,
     line   => 'service jenkins-slave restart',
     path   => '/etc/rc.local',
