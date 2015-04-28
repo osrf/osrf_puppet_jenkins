@@ -11,8 +11,8 @@ class files {
   # workaround by using rc.local
   file_line {
     ensure => present,
-    line   => 'service jenkins-slave restart'
-    path   => '/etc/rc.local'
+    line   => 'service jenkins-slave restart',
+    path   => '/etc/rc.local',
   }
 
   file { "/etc/lightdm/xhost.sh":
