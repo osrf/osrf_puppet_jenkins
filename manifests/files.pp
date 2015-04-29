@@ -15,6 +15,11 @@ class files {
     path   => '/etc/rc.local',
   }
 
+  delete_lines { "remove exit rc.local":
+    file => "/etc/rc.local",
+    pattern => "^exit 0",
+  }
+
   file { "/etc/lightdm/xhost.sh":
         source => "$confdir_setting/files/etc/lightdm/xhost.sh",
         mode=> "0744",
