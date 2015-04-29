@@ -40,6 +40,7 @@ class files {
     source => "$confdir_setting/files/etc/lightdm/lightdm.conf",
     replace => "no", # this is the important property
     ensure  => "present",
+    require => File['/etc/lightdm/xhost.sh']
   }
 
   file_line { "/etc/lightdm/lightdm.conf":
@@ -58,6 +59,6 @@ class files {
   exec { 'service_lightdm_restart':
     refreshonly => true,
     command     => "/usr/sbin/service lightdm restart",
-    require     => Package[lightdm],
+    require     => [ Package['lightdm'], File['/etc/lightdm/lightdm.conf'] ]
   }
 }
