@@ -65,7 +65,7 @@ class packages {
    default : {
       url-package { "jenkins-slave" :
          provider  => dpkg,
-         url       => 'http://mirrors.kernel.org/ubuntu/pool/universe/j/jenkins/jenkins-slave_1.509.2+dfsg-2_all.deb',
+         url       => 'http://packages.osrfoundation.org/gazebo/ubuntu/pool/main/j/jenkins/jenkins-slave_1.509.2+dfsg-2_all.deb',
       }
    }
  }
