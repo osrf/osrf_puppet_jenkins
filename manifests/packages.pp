@@ -7,17 +7,20 @@ class packages {
  package { "squid-deb-proxy" : ensure => installed }
  package { "default-jre-headless" : ensure => installed }
 
- # Docker support
+ # Docker support. Ubuntu packages are outdated, using docker ones
  case $operatingsystemrelease {
    12.04 : {
-        package { "curl" : ensure => installed }
-	exec {'docker-script':
-           command => "/usr/bin/curl -sSL https://get.docker.io/ubuntu/ | sudo sh",
-           require => Package['curl']
-        }
+       exec {'no-docker-script':
+           command => "echo 'No docker on Precise'"
+       }
    }
    default : {
-       package { "docker.io"         : ensure => installed }
+       package { "wget" : ensure => installed }
+       exec {'docker-script':
+           command => "/usr/bin/curl -sSL https://get.docker.io/ubuntu/ | sudo sh",
+           require => Package['wget']
+        }
+
        package { "qemu-user-static"  : ensure => installed }
    }
  }
