@@ -2,6 +2,7 @@ class packages {
 
  package { "wget"            : ensure => installed }
  package { "mercurial"       : ensure => installed }
+ package { "groovy"          : ensure => installed }
  package { "ntp"             : ensure => installed }
  package { "lightdm"         : ensure => installed }
  package { "squid-deb-proxy" : ensure => installed }
