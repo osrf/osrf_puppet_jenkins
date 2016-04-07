@@ -16,7 +16,6 @@ class packages {
        }
    }
    default : {
-       package { "wget" : ensure => installed }
        exec {'docker-script':
            command => "/usr/bin/curl -sSL https://get.docker.io/ubuntu/ | sudo sh",
            require => Package['wget']
