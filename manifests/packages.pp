@@ -17,7 +17,7 @@ class packages {
    }
    default : {
        exec {'docker-script':
-           command => "/usr/bin/curl -sSL https://get.docker.io/ubuntu/ | sudo sh",
+           command => "/usr/bin/curl -sSL https://get.docker.com | sudo sh",
            require => Package['wget']
         }
 
