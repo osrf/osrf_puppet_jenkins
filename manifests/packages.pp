@@ -7,6 +7,9 @@ class packages {
  package { "lightdm"         : ensure => installed }
  package { "squid-deb-proxy" : ensure => installed }
  package { "default-jre-headless" : ensure => installed }
+ # Enable proper HTTTPS support for bitbucket python client
+ package { "libffi-dev"      : ensure => installed }
+ package { "libssl-dev"      : ensure => installed }
 
  # Docker support. Ubuntu packages are outdated, using docker ones
  case $operatingsystemrelease {
