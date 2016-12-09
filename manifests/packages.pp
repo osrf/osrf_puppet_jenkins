@@ -75,4 +75,10 @@ class packages {
       }
    }
  }
+
+ # TODO: how to install this only in nvidia nodes?
+ url-package { "nvidia-docker" :
+     provider  => dpkg,
+     url       => 'https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb',
+ }
 }
