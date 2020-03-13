@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 
 # Mostly copied from wg-buildfarm by Tully Foote
@@ -6,7 +6,7 @@
 from optparse import OptionParser
 import sys
 import subprocess
-import platform
+import distro
 
 def run_cmd(cmd, quiet=True, extra_args=None, feed=None):
     args = {'shell': True}
@@ -22,10 +22,10 @@ def run_cmd(cmd, quiet=True, extra_args=None, feed=None):
     return p.wait()
 
 def get_ubuntu_version():
-    return platform.dist()[2]
+    return distro.name()
 
 def is_ubuntu():
-    return platform.dist()[0] == 'Ubuntu'
+    return distro.id() == 'ubuntu'
 
 def configure_puppet(jenkins_name, secret_key):
     """
@@ -37,11 +37,11 @@ def configure_puppet(jenkins_name, secret_key):
 
     # do stuff with slave
     # first, install puppet
-    print "updating apt"
+    print("updating apt")
     if run_cmd('apt-get update'):
         return False
 
-    print "installing puppet and stdlib module"
+    print("installing puppet and stdlib module")
     # No module package in precise
     # Deprecated package in pre
     if get_ubuntu_version() == 'precise':
@@ -57,20 +57,22 @@ def configure_puppet(jenkins_name, secret_key):
         if run_cmd('apt-get install -y puppet puppet-module-puppetlabs-stdlib'):
             return False
 
-    print "stopping puppet"
+    print("stopping puppet")
     # stop puppet
     if run_cmd('service puppet stop'):
         return False
 
-    print "Clearing /etc/puppet"
+    print("Clearing /etc/puppet")
     if run_cmd('rm -rf /etc/puppet'):
         return False
 
-    print "cloning puppet repo"
+    print("cloning puppet repo")
     if run_cmd('git clone https://github.com/j-rivero/osrf_puppet_jenkins.git  /etc/puppet'):
         return False
 
-    print "running puppet apply site.pp"
+    print("running puppet apply site.pp")
+    # FIXME This fails with the following error:
+    # Error: Evaluation Error: Use of 'import' has been discontinued in favor of a manifest directory.
     if run_cmd('puppet apply /etc/puppet/manifests/site.pp', quiet=False):
         return False
  
